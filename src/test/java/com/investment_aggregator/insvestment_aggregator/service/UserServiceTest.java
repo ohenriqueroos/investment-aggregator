@@ -1,7 +1,7 @@
 package com.investment_aggregator.insvestment_aggregator.service;
 
-import com.investment_aggregator.insvestment_aggregator.controller.CreateUserDto;
-import com.investment_aggregator.insvestment_aggregator.controller.UpdateUserDto;
+import com.investment_aggregator.insvestment_aggregator.controller.dto.CreateUserDto;
+import com.investment_aggregator.insvestment_aggregator.controller.dto.UpdateUserDto;
 import com.investment_aggregator.insvestment_aggregator.entity.User;
 import com.investment_aggregator.insvestment_aggregator.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;

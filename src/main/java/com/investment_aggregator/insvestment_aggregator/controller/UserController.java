@@ -1,8 +1,10 @@
 package com.investment_aggregator.insvestment_aggregator.controller;
 
+import com.investment_aggregator.insvestment_aggregator.controller.dto.CrateAccountDto;
+import com.investment_aggregator.insvestment_aggregator.controller.dto.CreateUserDto;
+import com.investment_aggregator.insvestment_aggregator.controller.dto.UpdateUserDto;
 import com.investment_aggregator.insvestment_aggregator.entity.User;
 import com.investment_aggregator.insvestment_aggregator.service.UserService;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,5 +52,11 @@ public class UserController {
     public ResponseEntity<Void> deleteById(@PathVariable("userId") String userId) {
         userService.deleteById(userId);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{userId}/accounts")
+    public ResponseEntity<Void> createAccount(@PathVariable("userId") String userId, @RequestBody CrateAccountDto createAccountDto){
+        userService.createAccount(userId, createAccountDto);
+        return ResponseEntity.ok().build();
     }
 }
