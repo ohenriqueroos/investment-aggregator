@@ -1,5 +1,6 @@
 package com.investment_aggregator.insvestment_aggregator.controller;
 
+import com.investment_aggregator.insvestment_aggregator.controller.dto.AccountResponseDto;
 import com.investment_aggregator.insvestment_aggregator.controller.dto.CrateAccountDto;
 import com.investment_aggregator.insvestment_aggregator.controller.dto.CreateUserDto;
 import com.investment_aggregator.insvestment_aggregator.controller.dto.UpdateUserDto;
@@ -58,5 +59,11 @@ public class UserController {
     public ResponseEntity<Void> createAccount(@PathVariable("userId") String userId, @RequestBody CrateAccountDto createAccountDto){
         userService.createAccount(userId, createAccountDto);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{userId}/accounts")
+    public ResponseEntity<List<AccountResponseDto>> listAccounts(@PathVariable("userId") String userId){
+        var accounts = userService.listAccounts(userId);
+        return ResponseEntity.ok(accounts);
     }
 }

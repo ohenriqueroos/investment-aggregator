@@ -1,5 +1,6 @@
 package com.investment_aggregator.insvestment_aggregator.service;
 
+import com.investment_aggregator.insvestment_aggregator.controller.dto.AccountResponseDto;
 import com.investment_aggregator.insvestment_aggregator.controller.dto.CrateAccountDto;
 import com.investment_aggregator.insvestment_aggregator.controller.dto.CreateUserDto;
 import com.investment_aggregator.insvestment_aggregator.controller.dto.UpdateUserDto;
@@ -94,5 +95,11 @@ public class UserService {
         account.setBillingAddress(billingAddress);
 
         accountRepository.save(account);
+    }
+
+    public List<AccountResponseDto> listAccounts(String userId) {
+        var user = userRepository.findById(UUID.fromString(userId)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        return user.getAccounts().stream().map(ac -> new AccountResponseDto(ac.getAccountId().toString(), ac.getDescription())).toList();
     }
 }
